@@ -17,7 +17,7 @@
   let isPostProcessingEnabled = true;
   let isTurntableActive = false;
   let turntableSpeed = 0.8;
-  let graphicsPreset = 'ultra'; // 'ultra' | 'balanced' | 'performance'
+  let graphicsPreset = 'balanced'; // 'ultra' | 'balanced' | 'performance'
 
   // State
   let currentStation = 'maitri'; // 'maitri' | 'bharati'
@@ -253,7 +253,10 @@
     pollTelemetry();
     setInterval(pollTelemetry, 2500);
 
-    // 10. Start Animation Loop
+    // 10. Start in the lighter 'balanced' preset
+    applyGraphicsPreset('balanced');
+
+    // 11. Start Animation Loop
     animate();
   }
 
@@ -1260,6 +1263,7 @@
         bloomPass.strength = 0.75;
       }
       if (filmicPass) filmicPass.enabled = true;
+      if (tiltShiftPass) tiltShiftPass.enabled = true;
       if (fxaaPass) fxaaPass.enabled = true;
       if (btnCinematic) btnCinematic.classList.add('active');
     } else if (preset === 'balanced') {
@@ -1271,6 +1275,7 @@
         bloomPass.strength = 0.45;
       }
       if (filmicPass) filmicPass.enabled = true;
+      if (tiltShiftPass) tiltShiftPass.enabled = false;
       if (fxaaPass) fxaaPass.enabled = true;
       if (btnCinematic) btnCinematic.classList.add('active');
     } else if (preset === 'performance') {

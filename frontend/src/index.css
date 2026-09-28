@@ -1,11 +1,10 @@
+/* fonts-scaled-v1 */
 /* ============================================================
    POLAR SYNC — Indian Antarctic Research Stations Digital Twin
    Master Design System: Clean, Modern, SIH Winning Level
    Dual Theme: Polar Light (Default) & Deep Space Polar Dark
    ============================================================ */
 
-/* ── GOOGLE FONTS ── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* ── LIGHT THEME (Default) ── */
 :root, [data-theme="light"] {
@@ -179,14 +178,14 @@ button {
 }
 
 .ps-brand-title {
-  font-size: 13.5px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--text-primary);
 }
 
 .ps-brand-subtitle {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.02em;
@@ -202,7 +201,7 @@ button {
 }
 
 .ps-station-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.06em;
@@ -220,7 +219,7 @@ button {
   background-color: var(--bg-card-subtle);
   border: 1px solid var(--border);
   border-radius: 5px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
   transition: all 0.2s ease;
@@ -264,13 +263,13 @@ button {
 }
 
 .ps-dropdown-item-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .ps-dropdown-item-sub {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--text-secondary);
 }
 
@@ -297,13 +296,13 @@ button {
 }
 
 .ps-loc-name {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .ps-loc-coords {
-  font-size: 8.5px;
+  font-size: 11px;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-muted);
 }
@@ -321,7 +320,7 @@ button {
   gap: 5px;
   padding: 3px 8px;
   border-radius: 20px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   border: 1px solid transparent;
 }
@@ -380,12 +379,12 @@ button {
 }
 
 .ps-network-tag {
-  font-size: 7.5px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .ps-network-val {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -401,7 +400,7 @@ button {
 }
 
 .ps-utc-tag {
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   color: var(--text-muted);
   background-color: var(--border);
@@ -417,13 +416,13 @@ button {
 
 .ps-utc-time {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .ps-utc-date {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--text-secondary);
 }
 
@@ -493,7 +492,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   border: 2px solid var(--border);
 }
@@ -578,7 +577,7 @@ button {
   gap: 7px;
   padding: 6px 8px;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-secondary);
   transition: all 0.15s ease;
@@ -637,11 +636,11 @@ button {
 }
 
 .ps-nav-ops-icon {
-  font-size: 9.5px;
+  font-size: 11.5px;
 }
 
 .ps-nav-ops-title {
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: 0.4px;
@@ -661,7 +660,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 7.5px;
+  font-size: 11px;
 }
 
 .ps-ops-key {
@@ -680,7 +679,7 @@ button {
 }
 
 .ps-ops-badge-code {
-  font-size: 7px;
+  font-size: 11px;
   font-weight: 800;
   padding: 0 4px;
   border-radius: 3px;
@@ -694,7 +693,7 @@ button {
 }
 
 .ps-nav-ops-sub {
-  font-size: 7.5px;
+  font-size: 11px;
   color: var(--status-normal);
   font-weight: 600;
 }
@@ -717,7 +716,7 @@ button {
 .ps-health-ratio-row {
   display: flex;
   justify-content: space-between;
-  font-size: 7.5px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--text-muted);
   font-family: 'JetBrains Mono', monospace;
@@ -805,7 +804,6 @@ button {
 .ps-twin-toggle {
   display: flex;
   background-color: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(8px);
   padding: 2px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -817,7 +815,7 @@ button {
   gap: 4px;
   padding: 3px 8px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: #cbd5e1;
   transition: all 0.15s;
@@ -837,10 +835,9 @@ button {
   align-items: center;
   padding: 3px 9px;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   background-color: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #cbd5e1;
   transition: all 0.15s;
@@ -911,7 +908,7 @@ button {
   padding: 2px 6px;
   border-radius: 4px;
   color: #ffffff;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -963,7 +960,7 @@ button {
 }
 
 .ps-domain-icon {
-  font-size: 12px;
+  font-size: 14.5px;
   flex-shrink: 0;
 }
 
@@ -976,7 +973,7 @@ button {
 }
 
 .ps-card-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
@@ -993,7 +990,7 @@ button {
 }
 
 .ps-card-action-link {
-  font-size: 9.5px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--accent-blue);
   cursor: pointer;
@@ -1007,7 +1004,7 @@ button {
 }
 
 .ps-live-badge {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 700;
   padding: 2px 6px;
   border-radius: 4px;
@@ -1025,7 +1022,7 @@ button {
 }
 
 .ps-badge-pill {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 700;
   padding: 2px 6px;
   border-radius: 10px;
@@ -1092,12 +1089,12 @@ button {
 .ps-dot.blue { background-color: var(--accent-blue); }
 
 .ps-metric-lbl {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .ps-metric-val {
-  font-size: 13.5px;
+  font-size: 16px;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
   color: var(--text-primary);
@@ -1118,12 +1115,12 @@ button {
 }
 
 .ps-donut-label {
-  font-size: 7.5px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .ps-donut-val {
-  font-size: 9.5px;
+  font-size: 11.5px;
   font-weight: 700;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-primary);
@@ -1139,13 +1136,13 @@ button {
 }
 
 .ps-sub-label {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--text-muted);
   display: block;
 }
 
 .ps-main-num {
-  font-size: 13.5px;
+  font-size: 16px;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
   color: var(--text-primary);
@@ -1153,7 +1150,7 @@ button {
 }
 
 .ps-main-num small {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -1174,7 +1171,7 @@ button {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 9.5px;
+  font-size: 11.5px;
   padding: 2px 4px;
   background-color: var(--bg-card-subtle);
   border-radius: 4px;
@@ -1183,12 +1180,12 @@ button {
 .ps-stream-time {
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 11px;
   flex-shrink: 0;
 }
 
 .ps-stream-badge {
-  font-size: 7.5px;
+  font-size: 11px;
   font-weight: 800;
   padding: 1px 4px;
   border-radius: 3px;
@@ -1211,7 +1208,7 @@ button {
 }
 
 .ps-stream-subsys {
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--text-secondary);
   background-color: var(--border);
@@ -1226,11 +1223,11 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
-  font-size: 9.5px;
+  font-size: 11.5px;
 }
 
 .ps-stream-empty {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-muted);
   text-align: center;
   padding: 16px;
@@ -1242,7 +1239,7 @@ button {
   background-color: var(--bg-card-subtle);
   border: 1px solid var(--border);
   border-radius: 4px;
-  font-size: 9.5px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--accent-blue);
   display: flex;
@@ -1316,7 +1313,7 @@ button {
 }
 
 .ps-tile-lbl-full {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--text-secondary);
   white-space: nowrap;
@@ -1329,7 +1326,7 @@ button {
 }
 
 .ps-tile-tag {
-  font-size: 7px;
+  font-size: 11px;
   font-weight: 700;
   padding: 1px 3px;
   border-radius: 3px;
@@ -1356,7 +1353,7 @@ button {
 
 .ps-tile-big-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14.5px;
+  font-size: 17.5px;
   font-weight: 800;
   color: var(--text-primary);
   white-space: nowrap;
@@ -1371,7 +1368,7 @@ button {
 .ps-tile-big-num.amber { color: var(--status-warning); }
 .ps-tile-big-num.red { color: var(--status-critical); }
 .ps-tile-big-num.text-val {
-  font-size: 11.5px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.2px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1379,7 +1376,7 @@ button {
 }
 
 .ps-tile-unit {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
   margin-left: 1px;
@@ -1387,7 +1384,7 @@ button {
 }
 
 .ps-tile-sub-caption {
-  font-size: 7.5px;
+  font-size: 11px;
   color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
@@ -1416,44 +1413,47 @@ button {
 .ps-station-status-2x2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  gap: 10px;
 }
 
 .ps-status-tile {
   display: flex;
   flex-direction: column;
-  padding: 5px 6px;
+  justify-content: space-between;
+  padding: 10px 8px;
   background-color: var(--bg-card-subtle);
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .ps-tile-header {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 5px;
+  min-height: 32px;
 }
 
 .ps-tile-icon-wrap {
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .ps-tile-name {
-  font-size: 8.5px;
+  font-size: 12px;
   font-weight: 600;
+  line-height: 1.15;
   color: var(--text-muted);
 }
 
 .ps-tile-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
-  margin: 1px 0;
+  margin: 6px 0;
   letter-spacing: -0.2px;
 }
 
 .ps-tile-val small {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-muted);
 }
@@ -1465,7 +1465,7 @@ button {
 }
 
 .ps-trend-chip {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 700;
 }
 .ps-trend-chip.green { color: var(--status-normal); }
@@ -1482,11 +1482,11 @@ button {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .ps-priority-pill-tag {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 800;
   padding: 1px 5px;
   border-radius: 3px;
@@ -1504,7 +1504,7 @@ button {
 
 .ps-priority-count {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 14.5px;
   font-weight: 800;
   color: var(--text-primary);
 }
@@ -1520,7 +1520,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: 11px;
   padding: 1px 0;
 }
 
@@ -1530,7 +1530,7 @@ button {
 }
 
 .ps-edge-p3-tag {
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--status-normal);
 }
@@ -1632,7 +1632,7 @@ button {
 }
 
 .ps-alerts-main-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
@@ -1649,7 +1649,7 @@ button {
 }
 
 .ps-alerts-sub-label {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
   font-family: 'JetBrains Mono', monospace;
@@ -1661,7 +1661,7 @@ button {
 }
 
 .ps-alerts-btn-arrow {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 700;
   color: var(--text-muted);
   transition: transform 0.15s ease, color 0.15s ease;
@@ -1690,13 +1690,13 @@ button {
 
 .ps-nominal-text {
   flex: 1;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--status-normal);
 }
 
 .ps-nominal-arrow {
-  font-size: 13px;
+  font-size: 15.5px;
   color: var(--text-muted);
 }
 
@@ -1713,7 +1713,7 @@ button {
 }
 
 .ps-ah-title {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -1736,7 +1736,7 @@ button {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 8px;
+  font-size: 11px;
   padding: 3px 6px;
   border-radius: 4px;
   background-color: var(--bg-card-subtle);
@@ -1753,12 +1753,12 @@ button {
 .ps-ah-time {
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 11px;
   flex-shrink: 0;
 }
 
 .ps-ah-priority-pill {
-  font-size: 7px;
+  font-size: 11px;
   font-weight: 800;
   padding: 0 4px;
   border-radius: 3px;
@@ -1777,7 +1777,7 @@ button {
   text-overflow: ellipsis;
   flex: 1;
   font-weight: 600;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 /* ── MODALS & COMMAND CENTER OVERLAYS ── */
@@ -1785,7 +1785,6 @@ button {
   position: fixed;
   inset: 0;
   background-color: var(--modal-backdrop);
-  backdrop-filter: blur(6px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -1833,18 +1832,18 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14.5px;
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: 0.04em;
 }
 
 .ps-modal-icon {
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .ps-modal-close-btn {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text-muted);
   width: 26px;
   height: 26px;
@@ -1875,7 +1874,7 @@ button {
 }
 
 .ps-footer-tip {
-  font-size: 9.5px;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 
@@ -1884,7 +1883,7 @@ button {
   background-color: #2563eb;
   color: #ffffff;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   transition: all 0.15s;
 }
@@ -1902,7 +1901,7 @@ button {
 }
 
 .ps-section-title {
-  font-size: 12px;
+  font-size: 14.5px;
   font-weight: 800;
   color: var(--text-primary);
   display: flex;
@@ -1954,7 +1953,7 @@ button {
 .ps-severity-dot.warning { background-color: var(--status-warning); }
 
 .ps-severity-label {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 800;
   padding: 1px 5px;
   border-radius: 3px;
@@ -1971,19 +1970,19 @@ button {
 }
 
 .ps-alert-title {
-  font-size: 12px;
+  font-size: 14.5px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .ps-alert-desc {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.35;
 }
 
 .ps-alert-room {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--accent-blue);
   display: inline-flex;
@@ -1997,7 +1996,7 @@ button {
   background: linear-gradient(135deg, #2563eb, #0284c7);
   color: #ffffff;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
@@ -2018,7 +2017,7 @@ button {
   border: 1px solid var(--border);
   color: var(--accent-blue);
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   align-self: flex-start;
@@ -2039,7 +2038,7 @@ button {
   gap: 8px;
   color: var(--status-normal);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14.5px;
 }
 
 /* History Events List */
@@ -2062,12 +2061,12 @@ button {
 
 .ps-history-time {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9.5px;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 
 .ps-history-type {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -2077,7 +2076,6 @@ button {
   position: fixed;
   inset: 0;
   background-color: var(--modal-backdrop);
-  backdrop-filter: blur(8px);
   z-index: 1200;
   display: flex;
   align-items: center;
@@ -2110,13 +2108,13 @@ button {
 .ps-ai-modal-title {
   display: flex;
   align-items: center;
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--text-primary);
 }
 
 .ps-ai-modal-close {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--text-muted);
   cursor: pointer;
 }
@@ -2137,7 +2135,7 @@ button {
 }
 
 .ps-ai-section-label {
-  font-size: 9.5px;
+  font-size: 11.5px;
   font-weight: 800;
   color: var(--accent-blue);
   text-transform: uppercase;
@@ -2145,14 +2143,14 @@ button {
 }
 
 .ps-ai-section-text {
-  font-size: 11.5px;
+  font-size: 14px;
   color: var(--text-primary);
   line-height: 1.4;
 }
 
 .ps-ai-list {
   list-style: disc inside;
-  font-size: 11.5px;
+  font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.4;
 }
@@ -2171,7 +2169,7 @@ button {
   background-color: #2563eb;
   color: #ffffff;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -2193,7 +2191,7 @@ button {
 }
 
 .ps-weather-station-title {
-  font-size: 13px;
+  font-size: 15.5px;
   font-weight: 800;
   color: var(--text-primary);
 }
@@ -2205,13 +2203,13 @@ button {
 }
 
 .ps-weather-latest-label {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .ps-weather-latest-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -2232,7 +2230,7 @@ button {
 }
 
 .ps-weather-card__label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.05em;
@@ -2240,14 +2238,14 @@ button {
 
 .ps-weather-card__val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 800;
   color: var(--text-primary);
   margin-top: 2px;
 }
 
 .ps-weather-card__unit {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-muted);
   margin-left: 2px;
 }
@@ -2266,7 +2264,7 @@ button {
 .ps-weather-controls button {
   padding: 4px 10px;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--text-secondary);
   transition: all 0.15s;
@@ -2286,20 +2284,140 @@ button {
 }
 
 .ps-chart-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 6px;
 }
 
 .ps-weather-summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
   background-color: var(--bg-card-subtle);
   border: 1px solid var(--border);
   border-radius: 8px;
+}
+
+.ps-weather-summary__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ps-weather-summary__top .ps-section-title {
+  margin-bottom: 0;
+}
+
+.ps-weather-summary__period {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background-color: var(--border-subtle);
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+/* 4 cards that automatically wrap on narrow screens */
+.ps-weather-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.ps-weather-summary__col {
+  --tone: var(--accent-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--tone);
+  border-radius: 8px;
+}
+.ps-weather-summary__col.temp     { --tone: var(--accent-blue); }
+.ps-weather-summary__col.wind     { --tone: var(--accent-cyan); }
+.ps-weather-summary__col.pressure { --tone: var(--accent-purple); }
+.ps-weather-summary__col.humidity { --tone: var(--accent-green); }
+
+.ps-weather-summary__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.ps-weather-summary__icon {
+  font-size: 14px;
+}
+
+.ps-weather-summary__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 12.5px;
+}
+
+/* The big "Current" value at the top of each card */
+.ps-weather-summary__row.is-current {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0 0 8px;
+  border-top: none;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 2px;
+}
+.ps-weather-summary__row.is-current + .ps-weather-summary__row {
+  border-top: none;
+}
+
+.ps-weather-summary__label {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.ps-weather-summary__value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.ps-weather-summary__unit {
+  margin-left: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.ps-weather-summary__row.is-current .ps-weather-summary__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ps-weather-summary__row.is-current .ps-weather-summary__value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--tone);
+}
+
+.ps-weather-summary__row.is-current .ps-weather-summary__unit {
+  font-size: 13px;
 }
 
 .ps-summary-item {
@@ -2308,13 +2426,13 @@ button {
 }
 
 .ps-summary-label {
-  font-size: 8.5px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
 .ps-summary-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -2346,7 +2464,7 @@ button {
   background-color: var(--bg-input);
   border: 1px solid var(--border);
   border-radius: 6px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-primary);
   outline: none;
 }
@@ -2358,14 +2476,14 @@ button {
 .ps-search-icon {
   position: absolute;
   left: 9px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
 .ps-search-clear-btn {
   position: absolute;
   right: 8px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-muted);
   cursor: pointer;
 }
@@ -2381,7 +2499,7 @@ button {
   gap: 5px;
   padding: 4px 8px;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   background-color: var(--bg-card-subtle);
   border: 1px solid var(--border);
@@ -2396,7 +2514,7 @@ button {
 }
 
 .ps-filter-count {
-  font-size: 8.5px;
+  font-size: 11px;
   padding: 1px 4px;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.15);
@@ -2412,14 +2530,14 @@ button {
 .ps-logs-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 10.5px;
+  font-size: 12.5px;
 }
 
 .ps-logs-table th {
   background-color: var(--bg-card-subtle);
   padding: 8px 10px;
   text-align: left;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--text-muted);
   border-bottom: 1px solid var(--border);
@@ -2439,17 +2557,17 @@ button {
 
 .ps-col-idx {
   color: var(--text-muted);
-  font-size: 9.5px;
+  font-size: 11.5px;
 }
 
 .ps-col-time {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .ps-col-msg {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
+  font-size: 12.5px;
   color: var(--text-primary);
 }
 
@@ -2463,7 +2581,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 9.5px;
+  font-size: 11.5px;
   color: var(--text-muted);
   padding: 0 4px;
 }
@@ -2478,14 +2596,14 @@ button {
 }
 
 .ps-inspector-desc {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.4;
   margin-bottom: 4px;
 }
 
 .ps-inspector-category-tag {
-  font-size: 9.5px;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 
@@ -2509,7 +2627,7 @@ button {
 }
 
 .ps-inspector-key {
-  font-size: 8.5px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -2525,13 +2643,13 @@ button {
 
 .ps-inspector-number {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 15.5px;
   font-weight: 800;
   color: var(--text-primary);
 }
 
 .ps-inspector-unit {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--text-muted);
 }
 
@@ -2554,7 +2672,7 @@ button {
   grid-column: span 2;
   text-align: center;
   padding: 16px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
@@ -2575,25 +2693,25 @@ button {
 }
 
 .ps-kpi-title {
-  font-size: 9.5px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--text-muted);
 }
 
 .ps-kpi-number {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 800;
   margin: 4px 0 2px 0;
 }
-.ps-kpi-number small { font-size: 10px; font-weight: 600; color: var(--text-muted); }
+.ps-kpi-number small { font-size: 12px; font-weight: 600; color: var(--text-muted); }
 .ps-kpi-number.green { color: var(--status-normal); }
 .ps-kpi-number.blue { color: var(--accent-blue); }
 .ps-kpi-number.cyan { color: var(--accent-cyan); }
 .ps-kpi-number.amber { color: var(--status-warning); }
 
 .ps-kpi-sub {
-  font-size: 8.5px;
+  font-size: 11px;
   color: var(--text-secondary);
 }
 
@@ -2614,7 +2732,7 @@ button {
   justify-content: space-between;
   padding: 4px 0;
   border-bottom: 1px solid var(--border-subtle);
-  font-size: 11px;
+  font-size: 13px;
 }
 .ps-subtable-row:last-child { border-bottom: none; }
 
@@ -2647,20 +2765,20 @@ button {
 }
 
 .ps-infra-label {
-  font-size: 11.5px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
   display: block;
 }
 
 .ps-infra-desc {
-  font-size: 9.5px;
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 
 .ps-infra-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 15.5px;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -2678,14 +2796,14 @@ button {
 
 .ps-log-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 17px;
+  font-size: 20.5px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 8px;
 }
 
 .ps-log-detail {
-  font-size: 10.5px;
+  font-size: 12.5px;
   color: var(--text-secondary);
   margin-bottom: 4px;
 }
@@ -2723,23 +2841,23 @@ button {
   }
 
   .ps-card-title {
-    font-size: 10.5px;
+    font-size: 12.5px;
   }
 
   .ps-tile-lbl-full {
-    font-size: 8px;
-  }
-
-  .ps-tile-big-num {
-    font-size: 13.5px;
-  }
-
-  .ps-tile-big-num.text-val {
     font-size: 11px;
   }
 
+  .ps-tile-big-num {
+    font-size: 16px;
+  }
+
+  .ps-tile-big-num.text-val {
+    font-size: 13px;
+  }
+
   .ps-tile-sub-caption {
-    font-size: 7px;
+    font-size: 11px;
   }
 }
 
@@ -2759,15 +2877,15 @@ button {
   }
 
   .ps-card-title {
-    font-size: 11.5px;
+    font-size: 14px;
   }
 
   .ps-tile-lbl-full {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .ps-tile-big-num {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .ps-middle-grid {
@@ -2926,7 +3044,7 @@ button {
 
   .ps-nav-label {
     display: inline-block;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .ps-content-workspace {
@@ -2986,8 +3104,24 @@ button {
   }
 
   .ps-tile-big-num {
-    font-size: 13px;
+    font-size: 15.5px;
   }
 }
 
+/* ── V2: wider sidebars for larger fonts ── */
+.ps-nav-sidebar { width: 168px; }
+.ps-right-sidebar { width: 272px; }
+
+/* ── V2: support classes for the new bottom cards ── */
+.ps-badge-pill.blue  { background-color: var(--accent-blue-light);  color: var(--accent-blue); }
+.ps-badge-pill.amber { background-color: var(--accent-amber-light); color: var(--status-warning); }
+.ps-badge-pill.cyan  { background-color: var(--accent-cyan-light);  color: var(--accent-cyan); }
+
+.ps-bottom-metrics-2x2 {
+  grid-template-rows: none;
+  grid-auto-rows: 1fr;
+}
+.ps-bottom-metrics-2x2.cols-1 { grid-template-columns: minmax(0, 1fr); }
+.ps-metric-2x2-tile.span-2 { grid-column: span 2; }
+.ps-tile-num-wrap .ps-tile-tag { margin-left: auto; align-self: center; }
 

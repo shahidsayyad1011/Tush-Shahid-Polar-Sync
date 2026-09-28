@@ -26,7 +26,7 @@ function buildSmoothLineConfig(labels, datasets) {
           align: 'start',
           labels: {
             color: '#64748b',
-            font: { family: 'Inter', size: 10, weight: '600' },
+            font: { family: 'Inter', size: 12, weight: '600' },
             boxWidth: 8,
             boxHeight: 8,
             usePointStyle: true,
@@ -40,7 +40,7 @@ function buildSmoothLineConfig(labels, datasets) {
           borderWidth: 1,
           titleColor: '#ffffff',
           bodyColor: '#cbd5e1',
-          bodyFont: { family: 'JetBrains Mono', size: 10 },
+          bodyFont: { family: 'JetBrains Mono', size: 12 },
           padding: 8,
           cornerRadius: 6,
         },
@@ -49,7 +49,7 @@ function buildSmoothLineConfig(labels, datasets) {
         x: {
           ticks: {
             color: '#94a3b8',
-            font: { size: 9 },
+            font: { size: 11 },
             maxTicksLimit: 5,
             maxRotation: 0,
           },
@@ -61,7 +61,7 @@ function buildSmoothLineConfig(labels, datasets) {
         y: {
           ticks: {
             color: '#94a3b8',
-            font: { size: 9 },
+            font: { size: 11 },
             maxTicksLimit: 5,
           },
           grid: {
@@ -186,7 +186,7 @@ export default function TelemetryChartsRow({
       backgroundColor: 'transparent',
     },
     {
-      label: 'Battery SOC (%)',
+      label: 'Battery Charge (%)',
       data: history.map((d) => d.battery_soc ?? 89),
       borderColor: CHART_PALETTE.batterySoc,
       backgroundColor: 'transparent',
@@ -262,7 +262,7 @@ export default function TelemetryChartsRow({
           <div className="ps-footer-metric-pill">
             <span className="ps-metric-icon">🔋</span>
             <div>
-              <span className="ps-sub-label">Battery SOC</span>
+              <span className="ps-sub-label">Battery Charge</span>
               <strong className="ps-main-num">{Number(battVal).toFixed(1)}%</strong>
             </div>
           </div>

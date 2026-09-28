@@ -11,8 +11,8 @@ function MiniSparkline({ color = '#10b981', points = [10, 14, 12, 18, 16, 22] })
   const min = Math.min(...points);
   const max = Math.max(...points);
   const range = max - min || 1;
-  const width = 60;
-  const height = 22;
+  const width = 56;
+  const height = 30;
 
   const coords = points.map((p, i) => {
     const x = (i / (points.length - 1)) * width;
@@ -138,7 +138,7 @@ export default function RightStatusSidebar({
           <div className="ps-status-tile">
             <div className="ps-tile-header">
               <span className="ps-tile-icon-wrap green">🔋</span>
-              <span className="ps-tile-name">Battery SOC</span>
+              <span className="ps-tile-name">Battery Charge</span>
             </div>
             <div className="ps-tile-val">{battSocVal} <small>%</small></div>
             <div className="ps-tile-footer">

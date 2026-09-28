@@ -139,26 +139,6 @@ export default function NavigationSidebar({
           </div>
         </div>
 
-        {/* Module 2: Polar Season & Mission Mode */}
-        <div className="ps-nav-ops-card">
-          <div className="ps-nav-ops-header">
-            <span className="ps-nav-ops-icon">🧭</span>
-            <span className="ps-nav-ops-title">MISSION STATE</span>
-          </div>
-          <div className="ps-nav-ops-stat-row">
-            <span className="ps-ops-key">Expedition:</span>
-            <span className="ps-ops-val">44th ISEA</span>
-          </div>
-          <div className="ps-nav-ops-stat-row">
-            <span className="ps-ops-key">Protocol:</span>
-            <span className="ps-ops-badge-code">CODE WHITE</span>
-          </div>
-          <div className="ps-nav-ops-stat-row">
-            <span className="ps-ops-key">Sun Cycle:</span>
-            <span className="ps-ops-val">Twilight</span>
-          </div>
-        </div>
-
         {/* Module 3: Station Subsystem Health Summary */}
         <div className="ps-nav-ops-card station-health">
           <div className="ps-nav-ops-header">

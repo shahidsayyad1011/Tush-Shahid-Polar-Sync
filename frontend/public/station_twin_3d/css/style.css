@@ -70,9 +70,7 @@ html, body {
   left: 8px;
   display: flex;
   align-items: center;
-  background: rgba(10, 16, 26, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 16, 26, 0.95);
   border: 1px solid rgba(0, 212, 255, 0.4);
   border-radius: 20px;
   padding: 2px;
@@ -130,7 +128,6 @@ html, body {
 
 .action-btn {
   background: var(--panel-bg);
-  backdrop-filter: blur(8px);
   border: 1px solid var(--panel-border);
   color: var(--text-primary);
   padding: 4px 9px;
@@ -190,8 +187,7 @@ html, body {
 }
 
 .marker-box {
-  background: rgba(10, 16, 26, 0.88);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 16, 26, 0.92);
   border: 1px solid rgba(0, 212, 255, 0.5);
   border-radius: 3px;
   padding: 2.5px 6px;
@@ -254,9 +250,7 @@ html, body {
   right: 24px;
   width: 360px;
   max-height: calc(100vh - 140px);
-  background: rgba(9, 16, 28, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(9, 16, 28, 0.96);
   border: 1px solid rgba(0, 212, 255, 0.32);
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 212, 255, 0.15);

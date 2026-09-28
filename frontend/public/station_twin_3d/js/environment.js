@@ -15,7 +15,7 @@ window.PolarEnvironment = (function () {
 
   // Procedural PBR Terrain Texture Suite (2048x2048)
   function createPBRTerrainTextures() {
-    const size = 2048;
+    const size = 1024;
 
     const diffuseCanvas = document.createElement('canvas');
     diffuseCanvas.width = size;
@@ -359,8 +359,8 @@ window.PolarEnvironment = (function () {
     sunLight = new THREE.DirectionalLight(0xfff9ee, 1.55);
     sunLight.position.set(68, 54, -46);
     sunLight.castShadow = true;
-    sunLight.shadow.mapSize.width = 4096;
-    sunLight.shadow.mapSize.height = 4096;
+    sunLight.shadow.mapSize.width = 2048;
+    sunLight.shadow.mapSize.height = 2048;
     sunLight.shadow.camera.near = 10;
     sunLight.shadow.camera.far = 230;
     const sD = 66;
