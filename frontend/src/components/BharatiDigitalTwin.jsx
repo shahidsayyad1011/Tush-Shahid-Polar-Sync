@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { STATION_ROOMS, detectAlerts } from '../data/stationRooms';
 import { API_URL } from '../services/api';
 
@@ -231,7 +231,17 @@ export default React.memo(function BharatiDigitalTwin({
   selectedRoom,
   onRoomSelect,
   alerts: propAlerts = [],
+  viewMode: propViewMode,
+  onViewModeChange,
 }) {
+  const [internalViewMode, setInternalViewMode] = useState('2D');
+  const viewMode = propViewMode !== undefined ? propViewMode : internalViewMode;
+  const setViewMode = (mode) => {
+    setInternalViewMode(mode);
+    if (onViewModeChange) onViewModeChange(mode);
+  };
+
+  const iframeRef = useRef(null);
   const [bharatiData, setBharatiData] = useState(null);
   const [bharatiAlerts, setBharatiAlerts] = useState([]);
 
@@ -274,6 +284,37 @@ export default React.memo(function BharatiDigitalTwin({
       ? propAlerts
       : bharatiAlerts;
 
+  // Sync incoming telemetry with the 3D twin iframe
+  useEffect(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow && currentData) {
+      iframeRef.current.contentWindow.postMessage({
+        type: 'TELEMETRY_UPDATE',
+        data: currentData
+      }, '*');
+    }
+  }, [currentData, viewMode]);
+
+  // Sync selected room to 3D camera
+  useEffect(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow && selectedRoom) {
+      iframeRef.current.contentWindow.postMessage({
+        type: 'FOCUS_ROOM',
+        roomId: selectedRoom
+      }, '*');
+    }
+  }, [selectedRoom, viewMode]);
+
+  // Listen for room clicks inside the 3D model
+  useEffect(() => {
+    const handleWindowMessage = (e) => {
+      if (e.data && e.data.type === 'SELECT_ROOM' && onRoomSelect) {
+        onRoomSelect(e.data.roomId);
+      }
+    };
+    window.addEventListener('message', handleWindowMessage);
+    return () => window.removeEventListener('message', handleWindowMessage);
+  }, [onRoomSelect]);
+
   const alertRoomIds = new Set(activeAlerts.map((a) => a.roomId));
 
   const getRoomStatus = (zone) => {
@@ -291,13 +332,40 @@ export default React.memo(function BharatiDigitalTwin({
   };
 
   return (
-    <div className="ps-twin">
-      <div className="ps-twin__label">
-        BHARATI — LARSEMANN HILLS, ANTARCTICA — 69°24′29″S 76°11′14″E
+    <div className={`ps-twin ${viewMode === '3D' ? 'mode-3d' : ''}`}>
+      {/* Viewport Toolbar: Toggle Switch between 2D and 3D */}
+      <div className="ps-twin__toolbar">
+        <div className="ps-twin-toggle">
+          <button
+            type="button"
+            className={`ps-twin-toggle-btn ${viewMode === '2D' ? 'active' : ''}`}
+            onClick={() => setViewMode('2D')}
+            title="Switch to 2D Plan"
+          >
+            <span className="ps-toggle-icon">🗺️</span>
+            <span>2D View</span>
+          </button>
+          <button
+            type="button"
+            className={`ps-twin-toggle-btn ${viewMode === '3D' ? 'active' : ''}`}
+            onClick={() => setViewMode('3D')}
+            title="Switch to 3D Digital Twin"
+          >
+            <span className="ps-toggle-icon">🌐</span>
+            <span>3D Digital Twin</span>
+          </button>
+        </div>
       </div>
 
-      <div
-        className="ps-twin__wrapper ps-twin__wrapper--bharati"
+      {viewMode === '2D' && (
+        <div className="ps-twin__label">
+          BHARATI — LARSEMANN HILLS, ANTARCTICA — 69°24′29″S 76°11′14″E
+        </div>
+      )}
+
+      {viewMode === '2D' ? (
+        <div
+          className="ps-twin__wrapper ps-twin__wrapper--bharati"
         style={{
           overflow: 'hidden',
           aspectRatio: '1024 / 472',
@@ -389,6 +457,16 @@ export default React.memo(function BharatiDigitalTwin({
           </div>
         </div>
       </div>
+      ) : (
+        <div className="ps-twin-3d-container">
+          <iframe
+            ref={iframeRef}
+            src="/station_twin_3d/index.html?station=bharati"
+            title="Bharati 3D Digital Twin"
+            className="ps-twin-3d-frame"
+          />
+        </div>
+      )}
     </div>
   );
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { STATION_ROOMS } from '../data/stationRooms';
 
 /**
@@ -90,7 +90,54 @@ const ROOM_ZONES = [
   },
 ];
 
-export default React.memo(function DigitalTwin({ stationData, selectedRoom, onRoomSelect, alerts }) {
+export default React.memo(function DigitalTwin({
+  stationData,
+  selectedRoom,
+  onRoomSelect,
+  alerts,
+  viewMode: propViewMode,
+  onViewModeChange,
+}) {
+  const [internalViewMode, setInternalViewMode] = useState('2D');
+  const viewMode = propViewMode !== undefined ? propViewMode : internalViewMode;
+  const setViewMode = (mode) => {
+    setInternalViewMode(mode);
+    if (onViewModeChange) onViewModeChange(mode);
+  };
+
+  const iframeRef = useRef(null);
+
+  // Sync incoming telemetry with the 3D twin iframe
+  useEffect(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow && stationData) {
+      iframeRef.current.contentWindow.postMessage({
+        type: 'TELEMETRY_UPDATE',
+        data: stationData
+      }, '*');
+    }
+  }, [stationData, viewMode]);
+
+  // Sync selected room to 3D camera
+  useEffect(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow && selectedRoom) {
+      iframeRef.current.contentWindow.postMessage({
+        type: 'FOCUS_ROOM',
+        roomId: selectedRoom
+      }, '*');
+    }
+  }, [selectedRoom, viewMode]);
+
+  // Listen for room clicks inside the 3D model
+  useEffect(() => {
+    const handleWindowMessage = (e) => {
+      if (e.data && e.data.type === 'SELECT_ROOM' && onRoomSelect) {
+        onRoomSelect(e.data.roomId);
+      }
+    };
+    window.addEventListener('message', handleWindowMessage);
+    return () => window.removeEventListener('message', handleWindowMessage);
+  }, [onRoomSelect]);
+
   const getRoomStatus = (roomId) => {
     const room = STATION_ROOMS.find((r) => r.id === roomId);
     if (!room || !stationData) return 'unknown';
@@ -105,12 +152,39 @@ export default React.memo(function DigitalTwin({ stationData, selectedRoom, onRo
   const alertRoomIds = new Set(alerts.map((a) => a.roomId));
 
   return (
-    <div className="ps-twin">
-      <div className="ps-twin__label">
-        MAITRI — SCHIRMACHER OASIS, ANTARCTICA — 70°45′52″S 11°44′03″E
+    <div className={`ps-twin ${viewMode === '3D' ? 'mode-3d' : ''}`}>
+      {/* Viewport Toolbar: Toggle Switch between 2D and 3D */}
+      <div className="ps-twin__toolbar">
+        <div className="ps-twin-toggle">
+          <button
+            type="button"
+            className={`ps-twin-toggle-btn ${viewMode === '2D' ? 'active' : ''}`}
+            onClick={() => setViewMode('2D')}
+            title="Switch to 2D Plan"
+          >
+            <span className="ps-toggle-icon">🗺️</span>
+            <span>2D View</span>
+          </button>
+          <button
+            type="button"
+            className={`ps-twin-toggle-btn ${viewMode === '3D' ? 'active' : ''}`}
+            onClick={() => setViewMode('3D')}
+            title="Switch to 3D Digital Twin"
+          >
+            <span className="ps-toggle-icon">🌐</span>
+            <span>3D Digital Twin</span>
+          </button>
+        </div>
       </div>
 
-      <div className="ps-twin__wrapper">
+      {viewMode === '2D' && (
+        <div className="ps-twin__label">
+          MAITRI — SCHIRMACHER OASIS, ANTARCTICA — 70°45′52″S 11°44′03″E
+        </div>
+      )}
+
+      {viewMode === '2D' ? (
+        <div className="ps-twin__wrapper">
         <img
           src="/maitri_station.jpg"
           alt="MAITRI Antarctic Research Station — 2D Plan View"
@@ -176,6 +250,16 @@ export default React.memo(function DigitalTwin({ stationData, selectedRoom, onRo
           })}
         </div>
       </div>
+      ) : (
+        <div className="ps-twin-3d-container">
+          <iframe
+            ref={iframeRef}
+            src="/station_twin_3d/index.html?station=maitri"
+            title="Maitri 3D Digital Twin"
+            className="ps-twin-3d-frame"
+          />
+        </div>
+      )}
     </div>
   );
 });

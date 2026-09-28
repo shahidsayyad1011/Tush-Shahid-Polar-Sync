@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Maitri Antarctic Research Station - 3D Digital Twin | SIH 2026</title>
+  <link rel="stylesheet" href="css/style.css?v=2.3" />
+  <!-- Google Fonts for sleek aerospace / polar telemetry look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Three.js and OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Three.js Post-Processing Pipeline -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/FXAAShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/Pass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+</head>
+<body>
+  <!-- 3D WebGL Canvas Container -->
+  <div id="canvas-container"></div>
+
+
+  <!-- Top Polar Command Header (Right-Aligned Quick Action Controls) -->
+  <header class="top-nav">
+    <div class="nav-right">
+      <button id="btn-labels" class="action-btn active" title="Toggle 3D Labels On/Off">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span>Labels</span>
+      </button>
+      <button id="btn-overlay" class="action-btn" title="Toggle Subsystem Mode">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span id="overlay-text">Subsystems</span>
+      </button>
+      <button id="btn-weather" class="action-btn" title="Cycle Weather / Environment">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <span id="env-text">Polar Day</span>
+      </button>
+      <button id="btn-cinematic" class="action-btn active" title="Toggle Cinematic FX">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Cinematic FX</span>
+      </button>
+      <button id="btn-reset-cam" class="action-btn" title="Reset to Photo Perspective">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        <span>Photo View</span>
+      </button>
+    </div>
+  </header>
+
+
+
+  <!-- Cinematic Graphics Studio & Post-Processing Control Panel -->
+  <aside id="cinematic-panel" class="cinematic-panel closed">
+    <div class="cin-header">
+      <div class="cin-header-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>CINEMATIC GRAPHICS STUDIO</span>
+      </div>
+      <button id="close-cinematic-btn" class="close-btn" title="Close Panel">&times;</button>
+    </div>
+
+    <div class="cin-scroll-body">
+      <!-- Section 1: Graphics Fidelity Presets -->
+      <div class="cin-section">
+        <div class="cin-section-label">GRAPHICS FIDELITY PRESET</div>
+        <div class="preset-pill-group">
+          <button class="preset-pill-btn active" data-preset="ultra">
+            <span class="preset-glow"></span> ULTRA CINEMATIC
+          </button>
+          <button class="preset-pill-btn" data-preset="balanced">BALANCED</button>
+          <button class="preset-pill-btn" data-preset="performance">PERFORMANCE</button>
+        </div>
+      </div>
+
+      <!-- Section 2: 360° Automatic Showcase & Lens Director -->
+      <div class="cin-section">
+        <div class="cin-section-label">360° SHOWCASE & CAM DIRECTOR</div>
+
+        <!-- 360° Automatic Rotation Orbit -->
+        <div class="cin-control-row">
+          <div class="cin-control-info">
+            <span class="cin-title">360° Automatic Orbit</span>
+            <span class="cin-sub">Continuous cinematic showcase rotation</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-turntable">
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <div class="cin-slider-row">
+          <span class="slider-label">Orbit Rotation Speed</span>
+          <input type="range" id="slider-turntable-speed" min="0.2" max="3.0" step="0.1" value="0.8">
+          <span class="slider-val" id="val-turntable-speed">0.8x</span>
+        </div>
+
+        <!-- Tilt-Shift Focus Mode -->
+        <div class="cin-control-row">
+          <div class="cin-control-info">
+            <span class="cin-title">Tilt-Shift Diorama Focus</span>
+            <span class="cin-sub">Miniature architectural macro depth</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-tiltshift">
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <div class="cin-slider-row">
+          <span class="slider-label">Focal Plane Height</span>
+          <input type="range" id="slider-tiltshift-y" min="0.1" max="0.9" step="0.02" value="0.52">
+          <span class="slider-val" id="val-tiltshift-y">52%</span>
+        </div>
+      </div>
+
+      <!-- Section 3: Shaders & Post-Processing -->
+      <div class="cin-section">
+        <div class="cin-section-label">POST-PROCESSING & SHADERS</div>
+
+        <!-- Bloom Intensity -->
+        <div class="cin-slider-row">
+          <span class="slider-label">Unreal HDR Bloom</span>
+          <input type="range" id="slider-bloom" min="0.0" max="2.0" step="0.05" value="0.75">
+          <span class="slider-val" id="val-bloom">0.75</span>
+        </div>
+
+        <!-- Filmic Exposure -->
+        <div class="cin-slider-row">
+          <span class="slider-label">Filmic Exposure</span>
+          <input type="range" id="slider-exposure" min="0.5" max="2.0" step="0.05" value="1.12">
+          <span class="slider-val" id="val-exposure">1.12</span>
+        </div>
+
+        <!-- S-Curve Contrast -->
+        <div class="cin-slider-row">
+          <span class="slider-label">ACES S-Curve Contrast</span>
+          <input type="range" id="slider-contrast" min="0.8" max="1.6" step="0.02" value="1.18">
+          <span class="slider-val" id="val-contrast">1.18</span>
+        </div>
+
+        <!-- Vignette & Lens Aberration -->
+        <div class="cin-slider-row">
+          <span class="slider-label">Anamorphic Vignette</span>
+          <input type="range" id="slider-vignette" min="0.0" max="0.8" step="0.02" value="0.38">
+          <span class="slider-val" id="val-vignette">0.38</span>
+        </div>
+
+        <div class="cin-control-row">
+          <div class="cin-control-info">
+            <span class="cin-title">FXAA Edge Smoothing</span>
+            <span class="cin-sub">Sub-pixel anti-aliasing</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle-fxaa" checked>
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Section 4: Polar Solar Illumination & Time of Day -->
+      <div class="cin-section">
+        <div class="cin-section-label">POLAR SOLAR ILLUMINATION</div>
+        <div class="cin-slider-row">
+          <span class="slider-label">Sun Elevation</span>
+          <input type="range" id="slider-sun-elevation" min="2" max="65" step="1" value="48">
+          <span class="slider-val" id="val-sun-elevation">48°</span>
+        </div>
+
+        <div class="solar-presets-grid">
+          <button class="solar-preset-btn active" data-elevation="48">
+            <span class="solar-icon">☀️</span> Midday
+          </button>
+          <button class="solar-preset-btn" data-elevation="18">
+            <span class="solar-icon">🌅</span> Golden Hour
+          </button>
+          <button class="solar-preset-btn" data-elevation="6">
+            <span class="solar-icon">🌆</span> Twilight
+          </button>
+          <button class="solar-preset-btn" data-elevation="2">
+            <span class="solar-icon">🌌</span> Polar Night
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 5: Water Simulation Controls (Bharati) -->
+      <div class="cin-section" id="water-controls-section">
+        <div class="cin-section-label">OCEAN SWELL DYNAMICS (BHARATI)</div>
+        <div class="cin-slider-row">
+          <span class="slider-label">Prydz Bay Waves</span>
+          <input type="range" id="slider-wave-scale" min="0.2" max="2.5" step="0.1" value="1.0">
+          <span class="slider-val" id="val-wave-scale">1.0x</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+
+  <!-- 3D World Scripts -->
+  <script src="js/cinematic_shaders.js?v=2.3"></script>
+  <script src="js/environment.js?v=2.3"></script>
+  <script src="js/maitri_model.js?v=2.3"></script>
+  <script src="js/bharati_model.js?v=2.3"></script>
+  <script src="js/app.js?v=2.3"></script>
+</body>
+</html>

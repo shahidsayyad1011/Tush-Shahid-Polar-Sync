@@ -94,6 +94,7 @@ export default function App() {
   const [connectionStatus,  setConnectionStatus]  = useState('connecting');
   const [selectedRoom,      setSelectedRoom]      = useState(null);
   const [activeStation,     setActiveStation]     = useState('MAITRI');
+  const [viewMode,          setViewMode]          = useState('2D');
 
   const prevDataRef = useRef({ MAITRI: null, BHARATI: null });
 
@@ -192,6 +193,8 @@ export default function App() {
               selectedRoom={selectedRoom}
               onRoomSelect={handleRoomSelect}
               alerts={alerts}
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
             />
           ) : (
             <DigitalTwin
@@ -199,6 +202,8 @@ export default function App() {
               selectedRoom={selectedRoom}
               onRoomSelect={handleRoomSelect}
               alerts={alerts}
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
             />
           )}
         </div>
