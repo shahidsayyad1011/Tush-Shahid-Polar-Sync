@@ -213,6 +213,9 @@
 
     // 5. Build Environment & Polar Terrain
     envData = PolarEnvironment.setupEnvironment(scene, renderer);
+    PolarEnvironment.setEnvironmentMode('twilight', scene);
+    const initialEnvText = document.getElementById('env-text');
+    if (initialEnvText) initialEnvText.textContent = 'Twilight';
 
     // 5b. High-End Post-Processing Pipeline
     initPostProcessing();

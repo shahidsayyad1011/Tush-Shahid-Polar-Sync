@@ -234,7 +234,7 @@ export default React.memo(function BharatiDigitalTwin({
   viewMode: propViewMode,
   onViewModeChange,
 }) {
-  const [internalViewMode, setInternalViewMode] = useState('2D');
+  const [internalViewMode, setInternalViewMode] = useState('3D');
   const viewMode = propViewMode !== undefined ? propViewMode : internalViewMode;
   const setViewMode = (mode) => {
     setInternalViewMode(mode);
@@ -331,16 +331,32 @@ export default React.memo(function BharatiDigitalTwin({
     return zone.shortName || zone.name || zone.id;
   };
 
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
+
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev);
+  };
+
   return (
-    <div className={`ps-twin ${viewMode === '3D' ? 'mode-3d' : ''}`}>
-      {/* Viewport Toolbar: Toggle Switch between 2D and 3D */}
+    <div className={`ps-twin ${viewMode === '3D' ? 'mode-3d' : ''} ${isFullscreen ? 'ps-twin-fullscreen' : ''}`}>
+      {/* Viewport Toolbar: Toggle Switch between 2D and 3D + Fullscreen */}
       <div className="ps-twin__toolbar">
         <div className="ps-twin-toggle">
           <button
             type="button"
             className={`ps-twin-toggle-btn ${viewMode === '2D' ? 'active' : ''}`}
             onClick={() => setViewMode('2D')}
-            title="Switch to 2D Plan"
+            title="Switch to 2D Plan View"
           >
             <span className="ps-toggle-icon">🗺️</span>
             <span>2D View</span>
@@ -355,6 +371,15 @@ export default React.memo(function BharatiDigitalTwin({
             <span>3D Digital Twin</span>
           </button>
         </div>
+
+        <button
+          type="button"
+          className={`ps-twin-fs-btn ${isFullscreen ? 'active' : ''}`}
+          onClick={toggleFullscreen}
+          title={isFullscreen ? "Exit Fullscreen (ESC)" : "Expand 3D Model to Fullscreen"}
+        >
+          <span>{isFullscreen ? '✖ Exit' : '⛶ Fullscreen'}</span>
+        </button>
       </div>
 
       {viewMode === '2D' && (

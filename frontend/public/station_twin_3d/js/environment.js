@@ -11,7 +11,7 @@ window.PolarEnvironment = (function () {
   let skyDome, terrainMesh, coastalOceanGroup;
   let oceanMesh = null, oceanMat = null, waterNormalTex1 = null, waterNormalTex2 = null, waterTime = 0;
   const floatingIceCakes = [];
-  let currentMode = 'day';
+  let currentMode = 'twilight';
 
   // Procedural PBR Terrain Texture Suite (2048x2048)
   function createPBRTerrainTextures() {
