@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { STATION_ROOMS } from '../data/stationRooms';
+import { API_URL } from '../services/api';
 
 /**
  * ROOM ZONE COORDINATE SYSTEM
@@ -279,7 +280,7 @@ export default React.memo(function DigitalTwin({
         <div className="ps-twin-3d-container">
           <iframe
             ref={iframeRef}
-            src="/station_twin_3d/index.html?station=maitri"
+            src={`/station_twin_3d/index.html?station=maitri&api=${encodeURIComponent(API_URL)}`}
             title="Maitri 3D Digital Twin"
             className="ps-twin-3d-frame"
           />

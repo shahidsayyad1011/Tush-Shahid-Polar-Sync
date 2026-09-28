@@ -872,7 +872,11 @@
 
   // Poll real-time telemetry from Python backend for active station
   function pollTelemetry() {
-    const apiBase = (window.location.port === '5000') ? '' : 'http://localhost:5000';
+    // Backend URL: passed in by the React app as ?api=..., else same-origin on :5000, else localhost
+    const apiParam = new URLSearchParams(window.location.search).get('api');
+    const apiBase = (apiParam && /^https?:\/\//.test(apiParam))
+      ? apiParam.replace(/\/+$/, '')
+      : (window.location.port === '5000') ? '' : 'http://localhost:5000';
     const stationQuery = currentStation.toUpperCase();
     fetch(`${apiBase}/api/data?station=${stationQuery}`)
       .then(res => {

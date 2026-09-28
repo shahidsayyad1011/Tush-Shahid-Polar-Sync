@@ -486,7 +486,7 @@ export default React.memo(function BharatiDigitalTwin({
         <div className="ps-twin-3d-container">
           <iframe
             ref={iframeRef}
-            src="/station_twin_3d/index.html?station=bharati"
+            src={`/station_twin_3d/index.html?station=bharati&api=${encodeURIComponent(API_URL)}`}
             title="Bharati 3D Digital Twin"
             className="ps-twin-3d-frame"
           />
