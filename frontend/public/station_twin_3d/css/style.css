@@ -536,3 +536,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
   font-size: 0.88rem;
 }
 
+/* ── V4: larger, easier-to-click 3D toolbar buttons ── */
+.top-nav .nav-right { gap: 8px; }
+.top-nav .action-btn {
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 7px;
+  gap: 6px;
+}
+.top-nav .action-btn svg { width: 15px; height: 15px; }
+
+/* narrow 3D window: icons only, so the two toolbars never overlap */
+@media (max-width: 900px) {
+  .top-nav .action-btn span { display: none; }
+  .top-nav .action-btn { padding: 8px 10px; }
+}

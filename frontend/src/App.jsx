@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import Header from './components/Header';
-import NavigationSidebar from './components/NavigationSidebar';
 import DigitalTwin from './components/DigitalTwin';
 import BharatiDigitalTwin from './components/BharatiDigitalTwin';
 import TelemetryChartsRow from './components/TelemetryChartsRow';
@@ -76,7 +75,7 @@ export default function App() {
 
   // Theme Management (Light mode default matching reference screenshot, with Dark mode switch)
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('polarsync_theme') || 'light';
+    return localStorage.getItem('polarsync_theme_v2') || 'dark';
   });
 
   // Dedicated Domain Modals
@@ -93,7 +92,7 @@ export default function App() {
   // Sync theme attribute to <html> element and save to localStorage
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('polarsync_theme', theme);
+    localStorage.setItem('polarsync_theme_v2', theme);
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
@@ -209,11 +208,6 @@ export default function App() {
         <div className="ps-dashboard-layout">
           {/* Upper Section: Compact Left Navigation + Center 3D Twin & Charts */}
           <div className="ps-upper-grid">
-            <NavigationSidebar
-              activeNav={activeNav}
-              onSelectNav={handleNavSelect}
-              activeStation={activeStation}
-            />
 
             <main className="ps-content-workspace">
               {/* 3D / 2D Digital Twin Viewport */}

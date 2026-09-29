@@ -73,7 +73,7 @@ function DomainCard({ icon, iconTone, title, badge, badgeTone, onDetails, detail
         <div className="ps-header-right-group">
           <span className={`ps-badge-pill ${badgeTone}`}>{badge}</span>
           <button type="button" className="ps-card-action-link" onClick={onDetails} title={detailsTitle}>
-            Details →
+            View Details <span className="ps-details-chevron" aria-hidden="true">›</span>
           </button>
         </div>
       </div>

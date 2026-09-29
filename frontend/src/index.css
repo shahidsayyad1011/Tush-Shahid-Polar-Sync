@@ -3109,8 +3109,7 @@ button {
 }
 
 /* ── V2: wider sidebars for larger fonts ── */
-.ps-nav-sidebar { width: 168px; }
-.ps-right-sidebar { width: 272px; }
+.ps-right-sidebar { width: clamp(240px, 18vw, 300px); }
 
 /* ── V2: support classes for the new bottom cards ── */
 .ps-badge-pill.blue  { background-color: var(--accent-blue-light);  color: var(--accent-blue); }
@@ -3125,3 +3124,443 @@ button {
 .ps-metric-2x2-tile.span-2 { grid-column: span 2; }
 .ps-tile-num-wrap .ps-tile-tag { margin-left: auto; align-self: center; }
 
+/* ============================================================
+   V3: RESPONSIVE LAYOUT + BIGGER DOMAIN CARDS + GREY LIGHT THEME
+   ============================================================ */
+
+/* ── Light theme: professional soft grey (dark theme untouched) ── */
+:root:not([data-theme="dark"]),
+[data-theme="light"] {
+  --bg-app: #dfe4ea;
+  --bg-workspace: #e6eaef;
+  --bg-panel: #eef1f5;
+  --bg-card: #f3f5f8;
+  --bg-card-hover: #e2e7ee;
+  --bg-card-subtle: #e8ecf1;
+  --bg-input: #f3f5f8;
+
+  --border: #b8c2cf;
+  --border-subtle: #d0d7e1;
+
+  --text-primary: #1a2332;
+  --text-secondary: #2f3b4d;
+  --text-muted: #5a677a;
+
+  --accent-blue-light: #dbe6f5;
+  --accent-cyan-light: #d6eaee;
+  --accent-green-light: #d7ece2;
+  --accent-amber-light: #f3e7cc;
+  --accent-red-light: #f4dcdc;
+  --accent-purple-light: #e4dff2;
+
+  --card-shadow: 0 1px 2px rgba(30, 41, 59, 0.08), 0 2px 8px rgba(30, 41, 59, 0.05);
+  --card-shadow-hover: 0 4px 12px rgba(30, 41, 59, 0.12);
+  --modal-backdrop: rgba(30, 41, 59, 0.6);
+}
+
+/* ── Shell: fix 100vw / mobile browser height ── */
+.ps-app { width: 100%; height: 100vh; height: 100dvh; }
+
+.ps-header-bar {
+  height: auto;
+  min-height: 52px;
+  flex-wrap: wrap;
+  padding: 6px 14px;
+  row-gap: 6px;
+}
+.ps-header-left, .ps-header-right { flex-wrap: wrap; }
+
+/* ── Station side-by-side switch ── */
+.ps-station-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.ps-station-switch-btn {
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ps-station-switch-btn:hover { color: var(--text-primary); }
+.ps-station-switch-btn.active {
+  background: var(--accent-blue);
+  color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] .ps-station-switch-btn.active { color: #06121f; }
+
+/* ── Workspace: left panel gone, so 3D + cards use the full width ── */
+.ps-upper-grid {
+  flex: 0 0 auto;
+  min-height: 0;
+  overflow: visible;
+}
+.ps-content-workspace {
+  height: auto;
+  overflow: visible;
+  padding-right: 0;
+}
+.ps-twin-viewport-container {
+  flex: none;
+  height: clamp(420px, 58vh, 760px);
+  min-height: 0;
+}
+
+/* ── Domain cards: larger, clearer numbers ── */
+.ps-bottom-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.ps-bottom-card { min-height: 230px; padding: 12px 14px; }
+.ps-card-header { flex-wrap: wrap; gap: 6px 8px; }
+.ps-card-title { font-size: clamp(14px, 1vw, 17px); white-space: normal; }
+.ps-bottom-metrics-2x2 { gap: 8px; margin-top: 8px; }
+.ps-metric-2x2-tile { padding: 8px 10px; gap: 4px; }
+.ps-tile-lbl-full {
+  font-size: clamp(11.5px, 0.8vw, 13px);
+  white-space: normal;
+  line-height: 1.2;
+}
+.ps-tile-num-wrap { flex-wrap: wrap; row-gap: 2px; overflow: visible; }
+.ps-tile-big-num {
+  font-size: clamp(22px, 1.7vw, 32px);
+  overflow: visible;
+  text-overflow: clip;
+}
+.ps-tile-big-num.text-val { font-size: clamp(15px, 1.15vw, 21px); }
+.ps-tile-unit { font-size: clamp(12px, 0.9vw, 15px); }
+.ps-tile-tag { font-size: clamp(11px, 0.8vw, 13px); padding: 2px 5px; }
+.ps-tile-sub-caption {
+  font-size: clamp(11.5px, 0.8vw, 13px);
+  white-space: normal;
+  line-height: 1.25;
+}
+
+/* ── Laptops / smaller desktops: 2 x 2 cards ── */
+@media (max-width: 1699px) {
+  .ps-bottom-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ── Tablets & below: everything stacks, page scrolls ── */
+@media (max-width: 1100px) {
+  html, body, #root, .ps-app {
+    height: auto;
+    min-height: 100dvh;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  .ps-app { overflow: visible !important; }
+  .ps-main-body { flex-direction: column; overflow: visible; height: auto; }
+  .ps-dashboard-layout { overflow: visible; height: auto; flex: none; }
+  .ps-right-sidebar { width: 100%; overflow: visible; height: auto; }
+  .ps-twin-viewport-container { height: clamp(360px, 55vh, 600px); }
+}
+
+/* ── Phones: single column ── */
+@media (max-width: 700px) {
+  .ps-bottom-grid { grid-template-columns: 1fr; }
+  .ps-bottom-card { min-height: 0; height: auto; }
+  .ps-location-badge { display: none; }
+  .ps-twin-viewport-container { height: 340px; }
+}
+
+/* ============================================================
+   V4: SINGLE-SCREEN FIT + DETAILS BUTTON + BIGGER 3D TOOLBAR
+   ============================================================ */
+
+/* ── "View Details" button on the 4 domain cards ── */
+.ps-bottom-card .ps-card-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  min-height: 28px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: var(--accent-blue);
+  border: 1px solid var(--accent-blue);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.ps-bottom-card .ps-card-action-link:hover {
+  text-decoration: none;
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.ps-bottom-card .ps-card-action-link:active { transform: none; }
+.ps-bottom-card .ps-card-action-link:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+.ps-details-chevron { font-size: 16px; line-height: 1; transition: transform 0.15s ease; }
+.ps-card-action-link:hover .ps-details-chevron { transform: translateX(2px); }
+[data-theme="dark"] .ps-bottom-card .ps-card-action-link { color: #06121f; }
+
+/* ── 3D window toolbar (2D View / 3D Digital Twin / Fullscreen): bigger, not huge ── */
+.ps-twin__toolbar { top: 12px; left: 12px; gap: 8px; }
+.ps-twin-toggle { padding: 3px; border-radius: 8px; }
+.ps-twin-toggle-btn { padding: 7px 14px; font-size: 13.5px; border-radius: 6px; gap: 6px; }
+.ps-twin-fs-btn { padding: 8px 14px; font-size: 13.5px; border-radius: 8px; }
+.ps-toggle-icon { font-size: 14px; }
+
+/* ── Fit everything on ONE screen (desktop / laptop) ── */
+@media (min-width: 1101px) {
+  .ps-dashboard-layout { gap: 8px; }
+
+  /* upper area (3D + charts) takes all height left over after the cards */
+  .ps-upper-grid { flex: 1 1 0; min-height: 420px; overflow: visible; }
+  .ps-content-workspace { flex: 1; height: auto; min-height: 0; overflow: hidden; gap: 8px; }
+
+  /* 3D window shrinks/grows with the screen */
+  .ps-twin-viewport-container { flex: 1 1 0; height: auto; min-height: 200px; }
+
+  /* charts row: fixed compact height */
+  .ps-middle-grid { margin-top: 0; }
+  .ps-chart-card { height: 190px; }
+  .ps-chart-canvas-wrap { min-height: 90px; }
+
+  /* domain cards: compact height, still large numbers */
+  .ps-bottom-card { min-height: 0; padding: 10px 12px; }
+  .ps-bottom-grid { gap: 10px; }
+  .ps-bottom-metrics-2x2 { gap: 6px; margin-top: 6px; }
+  .ps-metric-2x2-tile { padding: 5px 9px; gap: 2px; }
+  .ps-tile-big-num { font-size: clamp(20px, 1.45vw, 28px); }
+  .ps-tile-big-num.text-val { font-size: clamp(14px, 1vw, 19px); }
+}
+
+/* 4 cards across on normal laptops and desktops */
+@media (min-width: 1280px) {
+  .ps-bottom-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ============================================================
+   V5: CHART ROW FILL + RIGHT SIDEBAR FILL
+   ============================================================ */
+
+/* ── Chart row: all 3 cards same height, charts fill their card ── */
+@media (min-width: 1101px) {
+  .ps-middle-grid {
+    height: 230px;
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+  .ps-chart-card,
+  .ps-event-card {
+    height: 100%;
+    min-height: 0;
+  }
+  .ps-chart-canvas-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+  }
+  .ps-chart-canvas-wrap canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .ps-chart-footer-row { margin-top: 6px; padding-top: 6px; }
+
+  /* slightly larger text inside the Event Log */
+  .ps-stream-row { font-size: 12.5px; padding: 4px 6px; }
+  .ps-stream-msg { font-size: 12.5px; }
+  .ps-stream-time,
+  .ps-stream-badge,
+  .ps-stream-subsys { font-size: 11.5px; }
+  .ps-view-full-log-btn { padding: 6px 8px; font-size: 12.5px; }
+}
+
+/* ── Right sidebar: cards stretch to use the full column height ── */
+@media (min-width: 1101px) {
+  .ps-right-sidebar { gap: 10px; overflow-y: auto; }
+
+  .ps-right-sidebar > .ps-white-card {
+    flex: 1 1 auto;       /* grow to absorb the empty space */
+    min-height: 0;
+    padding: 12px 14px;
+  }
+  /* relative share of the free space */
+  .ps-right-sidebar > .ps-white-card:nth-child(1) { flex-grow: 3; }     /* Station Status */
+  .ps-right-sidebar > .ps-white-card:nth-child(2) { flex-grow: 1.7; }   /* Priority Queue */
+  .ps-right-sidebar > .ps-white-card:nth-child(3) { flex-grow: 2; }     /* Edge History */
+  .ps-right-sidebar > .ps-white-card:nth-child(4) { flex-grow: 0; }     /* Active Alerts button */
+  .ps-right-sidebar > .ps-white-card:nth-child(5) { flex-grow: 1.7; }   /* Alert History */
+
+  .ps-right-sidebar .ps-card-title { font-size: 16px; }
+  .ps-right-sidebar .ps-card-action-link { font-size: 13px; }
+
+  /* Station Status: 4 tiles fill the card, numbers bigger */
+  .ps-station-status-2x2 {
+    flex: 1;
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .ps-status-tile { padding: 12px 12px; justify-content: space-between; }
+  .ps-tile-name { font-size: 13.5px; }
+  .ps-tile-icon-wrap { font-size: 17px; }
+  .ps-tile-val { font-size: clamp(24px, 1.7vw, 32px); margin: 4px 0; }
+  .ps-tile-val small { font-size: 13px; }
+  .ps-trend-chip { font-size: 13px; }
+
+  /* Priority Queue: bigger rows, spread evenly */
+  .ps-priority-list { flex: 1; justify-content: space-around; gap: 6px; margin-top: 6px; }
+  .ps-priority-row { font-size: 14px; gap: 10px; }
+  .ps-priority-pill-tag { font-size: 12.5px; padding: 3px 8px; border-radius: 4px; min-width: 42px; text-align: center; }
+  .ps-priority-count { font-size: 20px; }
+
+  /* Edge History: bigger rows, spread evenly */
+  .ps-edge-history-list { flex: 1; justify-content: space-around; gap: 4px; margin-top: 6px; }
+  .ps-edge-history-row { font-size: 13px; padding: 4px 0; }
+  .ps-edge-time { font-size: 12.5px; }
+  .ps-edge-p3-tag { font-size: 12.5px; }
+
+  /* Active Alerts button */
+  .ps-active-alerts-trigger-btn { padding: 14px 16px; }
+  .ps-alerts-main-label { font-size: 15px; }
+  .ps-alerts-sub-label { font-size: 12px; }
+
+  /* Alert History: bigger rows, spread evenly */
+  .ps-alert-history-card { gap: 6px; }
+  .ps-ah-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+  .ps-clock-icon { font-size: 15px; }
+  .ps-alert-history-list { flex: 1; justify-content: space-around; gap: 6px; margin-top: 6px; }
+  .ps-alert-history-row { font-size: 12.5px; padding: 8px 10px; gap: 8px; flex: 1 1 0; max-height: 48px; align-items: center; }
+  .ps-ah-time { font-size: 12.5px; }
+  .ps-ah-priority-pill { font-size: 12px; padding: 2px 6px; }
+  .ps-ah-msg { font-size: 12.5px; }
+}
+
+/* ============================================================
+   V6: STATION STATUS FIX (no overflow, bigger units)
+   ============================================================ */
+@media (min-width: 1101px) {
+
+  /* a little wider so 2 tiles fit big numbers comfortably */
+  .ps-right-sidebar { width: clamp(300px, 19vw, 360px); }
+
+  /* cards never leak content outside their border */
+  .ps-right-sidebar > .ps-white-card { overflow: hidden; }
+
+  .ps-station-status-2x2 { min-height: 0; gap: 8px; }
+
+  .ps-status-tile {
+    padding: 10px 12px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .ps-tile-header { min-height: 0; gap: 6px; }
+  .ps-tile-name { font-size: 13px; }
+
+  /* number + unit always on ONE line */
+  .ps-tile-val {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    gap: 5px;
+    white-space: nowrap;
+    font-size: clamp(20px, 1.5vw, 29px);
+    margin: 4px 0;
+  }
+
+  /* unit / percentage symbol: clearly readable */
+  .ps-tile-val small {
+    font-size: clamp(14px, 0.95vw, 18px);
+    font-weight: 800;
+    color: var(--text-secondary);
+    line-height: 1;
+  }
+
+  .ps-tile-footer { flex-wrap: nowrap; gap: 6px; overflow: hidden; }
+  .ps-trend-chip { font-size: 13px; white-space: nowrap; }
+}
+
+/* ============================================================
+   ALERT CARD: readable text + clean two-line layout
+   ============================================================ */
+.ps-right-sidebar .ps-active-alerts-card { display: flex; padding: 0 !important; }
+
+.ps-active-alerts-trigger-btn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  color: var(--text-primary);            /* buttons default to black text: fixed here */
+  text-align: left;
+}
+.ps-active-alerts-trigger-btn.has-alerts { background: var(--accent-red-light); }
+.ps-active-alerts-trigger-btn.nominal    { background: transparent; }
+
+.ps-alerts-btn-left { flex: 1; min-width: 0; align-items: center; gap: 10px; }
+.ps-alerts-btn-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+
+.ps-alert-title-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+
+/* line 1: alert name */
+.ps-active-alerts-trigger-btn .ps-alerts-main-label {
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ps-active-alerts-trigger-btn.has-alerts .ps-alerts-main-label { color: var(--status-critical); }
+.ps-active-alerts-trigger-btn .ps-alerts-main-label.warning     { color: var(--status-warning); }
+.ps-active-alerts-trigger-btn.nominal .ps-alerts-main-label     { color: var(--status-normal); }
+
+/* severity pill */
+.ps-alert-sev-tag {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  line-height: 1.3;
+}
+.ps-alert-sev-tag.critical { background: var(--status-critical); color: #ffffff; }
+.ps-alert-sev-tag.warning  { background: var(--status-warning);  color: #ffffff; }
+
+/* "+N more" chip */
+.ps-alert-more-chip {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border);
+  padding: 1px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* line 2: one-line description, clearly readable */
+.ps-active-alerts-trigger-btn .ps-alerts-current-line {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

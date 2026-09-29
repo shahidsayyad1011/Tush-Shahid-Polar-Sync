@@ -64,59 +64,22 @@ export default function Header({
           </div>
         </div>
 
-        {/* Station Selector Dropdown */}
+        {/* Station Switch (side by side) */}
         <div className="ps-station-select-group">
           <span className="ps-station-label">STATION</span>
-          <div className="ps-station-dropdown-wrap">
-            <button
-              type="button"
-              className="ps-station-dropdown-btn"
-              onClick={() => setStationDropdownOpen(!stationDropdownOpen)}
-              aria-haspopup="listbox"
-              aria-expanded={stationDropdownOpen}
-            >
-              <span className="ps-station-name-text">{activeStation}</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-
-            {stationDropdownOpen && (
-              <div className="ps-station-dropdown-menu" role="listbox">
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={activeStation === 'MAITRI'}
-                  className={`ps-dropdown-item ${activeStation === 'MAITRI' ? 'selected' : ''}`}
-                  onClick={() => {
-                    onStationChange('MAITRI');
-                    setStationDropdownOpen(false);
-                  }}
-                >
-                  <span className="ps-dropdown-flag">🇮🇳</span>
-                  <div>
-                    <div className="ps-dropdown-item-title">MAITRI</div>
-                    <div className="ps-dropdown-item-sub">Schirmacher Oasis</div>
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={activeStation === 'BHARATI'}
-                  className={`ps-dropdown-item ${activeStation === 'BHARATI' ? 'selected' : ''}`}
-                  onClick={() => {
-                    onStationChange('BHARATI');
-                    setStationDropdownOpen(false);
-                  }}
-                >
-                  <span className="ps-dropdown-flag">🇮🇳</span>
-                  <div>
-                    <div className="ps-dropdown-item-title">BHARATI</div>
-                    <div className="ps-dropdown-item-sub">Larsemann Hills</div>
-                  </div>
-                </button>
-              </div>
-            )}
+          <div className="ps-station-switch" role="tablist" aria-label="Select station">
+            {['MAITRI', 'BHARATI'].map((st) => (
+              <button
+                key={st}
+                type="button"
+                role="tab"
+                aria-selected={activeStation === st}
+                className={`ps-station-switch-btn ${activeStation === st ? 'active' : ''}`}
+                onClick={() => onStationChange(st)}
+              >
+                {st}
+              </button>
+            ))}
           </div>
         </div>
 

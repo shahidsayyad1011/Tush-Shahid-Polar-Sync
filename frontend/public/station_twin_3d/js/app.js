@@ -217,6 +217,16 @@
     const initialEnvText = document.getElementById('env-text');
     if (initialEnvText) initialEnvText.textContent = 'Twilight';
 
+    // Default lighting follows the dashboard theme: dark = Polar Night, light = Twilight
+    applyThemeLighting(getDashboardTheme());
+    try {
+      // switching dark/light on the dashboard re-applies the matching lighting live
+      new MutationObserver(() => applyThemeLighting(getDashboardTheme())).observe(
+        window.parent.document.documentElement,
+        { attributes: true, attributeFilter: ['data-theme'] }
+      );
+    } catch (e) { /* not embedded / cross-origin: keep default */ }
+
     // 5b. High-End Post-Processing Pipeline
     initPostProcessing();
 
@@ -902,6 +912,40 @@
     if (activeModuleId) {
       updatePanelContent(activeModuleId);
     }
+  }
+
+  // Read the dashboard theme ('dark' by default)
+  function getDashboardTheme() {
+    try {
+      if (window.parent && window.parent !== window) {
+        const t = window.parent.document.documentElement.getAttribute('data-theme');
+        return t === 'light' ? 'light' : 'dark';
+      }
+    } catch (e) { /* cross-origin: fall through */ }
+    return 'dark';
+  }
+
+  // Lighting preset that follows the dashboard theme
+  //   dark  -> Polar Night (sun elevation 2°)
+  //   light -> Twilight    (sun elevation 6°)
+  function applyThemeLighting(theme) {
+    if (!scene) return;
+    const isLight = theme === 'light';
+    const elevation = isLight ? 6 : 2;
+
+    PolarEnvironment.setEnvironmentMode('twilight', scene);
+    PolarEnvironment.setSunElevation(elevation, scene);
+
+    const envText = document.getElementById('env-text');
+    if (envText) envText.textContent = isLight ? 'Twilight' : 'Polar Night';
+
+    const slider = document.getElementById('slider-sun-elevation');
+    const val = document.getElementById('val-sun-elevation');
+    if (slider) slider.value = elevation;
+    if (val) val.textContent = `${elevation}°`;
+    document.querySelectorAll('.solar-preset-btn').forEach((b) => {
+      b.classList.toggle('active', parseFloat(b.dataset.elevation) === elevation);
+    });
   }
 
   // Listen for parent messages when embedded in React dashboard

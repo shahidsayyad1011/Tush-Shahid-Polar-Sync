@@ -61,7 +61,7 @@ export default function RightStatusSidebar({
         if (queue) setEdgeQueue(queue);
         if (history && history.length) setEdgeHistory(history);
         if (sync) setSyncStatus(sync);
-      } catch (_) {}
+      } catch (_) { }
     }
 
     loadEdgeData();
@@ -90,26 +90,34 @@ export default function RightStatusSidebar({
     edgeHistory && edgeHistory.length > 0
       ? edgeHistory.slice(0, 5)
       : [
-          { time: '14:23:25', p: 'P3', type: 'TELEM', status: 'Synced' },
-          { time: '14:23:25', p: 'P3', type: 'TELEM', status: 'Synced' },
-          { time: '14:23:15', p: 'P3', type: 'TELEM', status: 'Synced' },
-          { time: '14:23:15', p: 'P3', type: 'TELEM', status: 'Synced' },
-          { time: '14:23:05', p: 'P3', type: 'TELEM', status: 'Synced' },
-        ];
+        { time: '14:23:25', p: 'P3', type: 'TELEM', status: 'Synced' },
+        { time: '14:23:25', p: 'P3', type: 'TELEM', status: 'Synced' },
+        { time: '14:23:15', p: 'P3', type: 'TELEM', status: 'Synced' },
+        { time: '14:23:15', p: 'P3', type: 'TELEM', status: 'Synced' },
+        { time: '14:23:05', p: 'P3', type: 'TELEM', status: 'Synced' },
+      ];
+
+
+  // Most important current alert (critical first) shown directly on the dashboard
+  const sortedAlerts = [...alerts].sort(
+    (a, b) => (a.severity === 'critical' ? 0 : 1) - (b.severity === 'critical' ? 0 : 1)
+  );
+  const topAlert = sortedAlerts[0] || null;
+  const extraAlerts = Math.max(0, alerts.length - 1);
 
   // Alert History feed items
   const displayAlertHistory =
     anomalyEvents && anomalyEvents.length > 0
       ? anomalyEvents.slice(0, 3).map((evt) => ({
-          time: evt.timestamp?.split(' ')[1]?.slice(0, 8) || evt.time || '11:47:55',
-          priority: evt.severity === 'critical' ? 'P1' : (evt.severity === 'warning' ? 'P2' : 'P3'),
-          message: evt.title || evt.description || evt.message || 'Telemetry Anomaly Event',
-        }))
+        time: evt.timestamp?.split(' ')[1]?.slice(0, 8) || evt.time || '11:47:55',
+        priority: evt.severity === 'critical' ? 'P1' : (evt.severity === 'warning' ? 'P2' : 'P3'),
+        message: evt.title || evt.description || evt.message || 'Telemetry Anomaly Event',
+      }))
       : [
-          { time: '11:47:55', priority: 'P3', message: 'Telemetry stream nominal' },
-          { time: '10:24:12', priority: 'P2', message: 'Battery SOC below 85%' },
-          { time: '08:15:00', priority: 'P3', message: 'Automated edge sync OK' },
-        ];
+        { time: '11:47:55', priority: 'P3', message: 'Telemetry stream nominal' },
+        { time: '10:24:12', priority: 'P2', message: 'Battery SOC below 85%' },
+        { time: '08:15:00', priority: 'P3', message: 'Automated edge sync OK' },
+      ];
 
   return (
     <aside className="ps-right-sidebar">
@@ -255,16 +263,29 @@ export default function RightStatusSidebar({
           type="button"
           className={`ps-active-alerts-trigger-btn ${alerts.length > 0 ? 'has-alerts' : 'nominal'}`}
           onClick={onOpenAlertDetails}
-          title={alerts.length > 0 ? 'Open Alert Diagnostics' : 'Inspect Telemetry Health'}
+          title="Open alert details"
         >
           <div className="ps-alerts-btn-left">
             <span className={`ps-alerts-status-dot ${alerts.length > 0 ? 'alerting' : 'nominal'}`} />
             <div className="ps-alerts-btn-text">
-              <span className="ps-alerts-main-label">
-                {alerts.length > 0 ? `${alerts.length} Active System Alerts` : 'All Systems Nominal'}
-              </span>
-              <span className="ps-alerts-sub-label">
-                {alerts.length > 0 ? 'INSPECT ALERTS ›' : 'TELEMETRY HEALTHY'}
+              <div className="ps-alert-title-row">
+                <span className={`ps-alerts-main-label ${topAlert ? topAlert.severity : ''}`}>
+                  {topAlert ? topAlert.message : 'All Systems Nominal'}
+                </span>
+                {topAlert && (
+                  <span className={`ps-alert-sev-tag ${topAlert.severity}`}>
+                    {topAlert.severity === 'critical' ? 'CRITICAL' : 'WARNING'}
+                  </span>
+                )}
+                {extraAlerts > 0 && (
+                  <span className="ps-alert-more-chip">+{extraAlerts} more</span>
+                )}
+              </div>
+              <span
+                className="ps-alerts-current-line"
+                title={topAlert ? `${topAlert.message} — ${topAlert.description}` : 'No active alerts'}
+              >
+                {topAlert ? topAlert.description : 'No active alerts · telemetry healthy'}
               </span>
             </div>
           </div>
@@ -305,6 +326,7 @@ export default function RightStatusSidebar({
           ))}
         </div>
       </div>
+
     </aside>
   );
 }
