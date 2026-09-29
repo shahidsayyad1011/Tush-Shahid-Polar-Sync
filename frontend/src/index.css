@@ -532,10 +532,11 @@ button {
 /* ── UPPER GRID: COMPACT NAV + CENTER WORKSPACE ── */
 .ps-upper-grid {
   display: flex;
-  flex: 1;
+  flex: 0 0 auto;
+  width: 100%;
   min-height: 0;
   gap: 10px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ── LEFT NAVIGATION SIDEBAR (POLAR STATION OPERATIONS CONSOLE) ── */
@@ -724,16 +725,15 @@ button {
 
 /* ── CENTER WORKSPACE CANVAS ── */
 .ps-content-workspace {
-  flex: 1;
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
   min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 2px;
-  height: 100%;
+  overflow: visible;
+  height: auto;
 }
 
 .ps-content-workspace::-webkit-scrollbar {
@@ -3266,6 +3266,8 @@ button {
   gap: 10px;
   width: 100%;
   min-width: 0;
+  flex: 0 0 auto;
+  margin-top: 4px;
 }
 
 @media (min-width: 1550px) {
@@ -3587,29 +3589,37 @@ button {
 /* ── Desktop & Laptop Layout ── */
 @media (min-width: 1101px) {
   .ps-dashboard-layout {
-    gap: 8px;
+    gap: 12px;
     overflow-y: auto;
     overflow-x: hidden;
   }
 
   .ps-upper-grid {
-    flex: 1 1 auto;
-    min-height: 380px;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: auto;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
   }
 
   .ps-content-workspace {
-    flex: 1;
+    flex: 0 0 auto;
+    width: 100%;
     height: auto;
-    min-height: 0;
+    min-height: auto;
     overflow: visible;
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 0;
   }
 
   .ps-twin-viewport-container {
-    flex: 1 1 auto;
-    height: clamp(260px, 42vh, 520px);
-    min-height: 220px;
+    flex: 0 0 auto;
+    width: 100%;
+    height: clamp(280px, 42vh, 520px);
+    min-height: 240px;
   }
 
   /* Telemetry Charts Row */
@@ -3617,9 +3627,11 @@ button {
     display: grid;
     grid-template-columns: 1.15fr 1.15fr 1.1fr;
     gap: 8px;
-    height: 225px;
+    height: 230px;
     align-items: stretch;
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: 0;
   }
 
   .ps-chart-card,
