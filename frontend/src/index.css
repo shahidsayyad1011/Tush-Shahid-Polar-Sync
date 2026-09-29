@@ -848,21 +848,67 @@ button {
   color: #ffffff;
 }
 
+/* 2D plan view: the wrapper fills the whole window and acts as a "container".
+   The stage inside it is the largest box with the image's exact aspect ratio that
+   fits fully inside the window, so the image is never cropped or stretched and the
+   room hotspots (which are % of the image) always line up with the picture. */
 .ps-twin__wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #0d1622;
+  overflow: hidden;
+  container-type: size;
+}
+
+.ps-twin__stage {
+  position: relative;
+  flex: none;
+  width: 100%; /* fallback for very old browsers */
+}
+
+/* MAITRI image = 1376 x 768 px */
+.ps-twin__stage--maitri {
+  aspect-ratio: 1376 / 768;
+  width: min(100cqw, calc(100cqh * 1376 / 768));
+}
+
+/* BHARATI image = 1024 x 547 px */
+.ps-twin__stage--bharati {
+  aspect-ratio: 1024 / 547;
+  width: min(100cqw, calc(100cqh * 1024 / 547));
 }
 
 .ps-twin__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill; /* stage already has the image's exact ratio */
   display: block;
+  user-select: none;
+}
+
+/* Station caption: floats at the top-right instead of pushing the image down */
+.ps-twin__label {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 30;
+  max-width: calc(100% - 24px);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(15, 23, 42, 0.75);
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
 }
 
 .ps-twin__overlays {

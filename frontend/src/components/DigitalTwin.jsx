@@ -211,6 +211,7 @@ export default React.memo(function DigitalTwin({
 
       {viewMode === '2D' ? (
         <div className="ps-twin__wrapper">
+        <div className="ps-twin__stage ps-twin__stage--maitri">
         <img
           src="/maitri_station.jpg"
           alt="MAITRI Antarctic Research Station — 2D Plan View"
@@ -274,6 +275,7 @@ export default React.memo(function DigitalTwin({
               </div>
             );
           })}
+        </div>
         </div>
       </div>
       ) : (

@@ -391,32 +391,13 @@ export default React.memo(function BharatiDigitalTwin({
       {viewMode === '2D' ? (
         <div
           className="ps-twin__wrapper ps-twin__wrapper--bharati"
-        style={{
-          overflow: 'hidden',
-          aspectRatio: '1024 / 472',
-          borderRadius: 'var(--radius-sm)',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
-        }}
       >
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '1024 / 547',
-          }}
-        >
+        <div className="ps-twin__stage ps-twin__stage--bharati">
           <img
             src="/bharati-map.jpg"
             alt="BHARATI Antarctic Research Station — 3D Axonometric Map"
             className="ps-twin__img"
             draggable={false}
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'block',
-              objectFit: 'cover',
-              objectPosition: 'top',
-            }}
           />
 
           {/* Interactive hotspot overlay — covers the image 1:1 */}

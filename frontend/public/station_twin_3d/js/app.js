@@ -926,18 +926,16 @@
   }
 
   // Lighting preset that follows the dashboard theme
-  //   dark  -> Polar Night (sun elevation 2°)
-  //   light -> Twilight    (sun elevation 6°)
+  //   dark and light -> both use Twilight (sun elevation 6°)
   function applyThemeLighting(theme) {
     if (!scene) return;
-    const isLight = theme === 'light';
-    const elevation = isLight ? 6 : 2;
+    const elevation = 6;
 
     PolarEnvironment.setEnvironmentMode('twilight', scene);
     PolarEnvironment.setSunElevation(elevation, scene);
 
     const envText = document.getElementById('env-text');
-    if (envText) envText.textContent = isLight ? 'Twilight' : 'Polar Night';
+    if (envText) envText.textContent = 'Twilight';
 
     const slider = document.getElementById('slider-sun-elevation');
     const val = document.getElementById('val-sun-elevation');
