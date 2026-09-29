@@ -2076,7 +2076,7 @@ button {
   position: fixed;
   inset: 0;
   background-color: var(--modal-backdrop);
-  z-index: 1200;
+  z-index: 4000;
   display: flex;
   align-items: center;
   justify-content: center;
